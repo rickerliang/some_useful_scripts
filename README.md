@@ -11,3 +11,6 @@
 
 ## pngs_to_video.sh 使用ffmpeg把png序列合成m4v
 用法 pngs_to_video.sh [out_name.m4v] [wxh] [framerate]，例如pngs_to_video.sh dataset_neg.m4v 640x360 25
+
+## remove_less_then_100x100_pic.sh 对目标目录内图片按100x100规格切分，并移除边缘/余量不足的图片，输出到/tmp/crop_100x100_output_dir
+用法 remove_less_then_100x100_pic.sh [folder] 例如 remove_less_then_100x100_pic.sh ./negative_label
