@@ -24,18 +24,19 @@ sort __tmp2.xml > __tmp3.xml
 cd ./coding
 while read p; do
   # 捕捉xml文件内，file路径、line行号、msg错误提示
-  if [[ "'$p'" =~ (error file=\")([^\"]+)(\" line=\")([0-9]+)([[:print:]]+\" msg=\")([[:print:]]+) ]]; then
+  if [[ "'$p'" =~ (error file=\")([^\"]+)(\" line=\")([0-9]+)([[:print:]]+\" severity=\")([[:print:]]+)\"( msg=\")([[:print:]]+) ]]; then
     file_name=${BASH_REMATCH[2]}
     
     #file_name=$(ls ${BASH_REMATCH[2]}$match_any)
     #echo $file_name
     
     file_line=${BASH_REMATCH[4]}
-    err_msg=${BASH_REMATCH[6]}
+    severity=${BASH_REMATCH[6]}
+    err_msg=${BASH_REMATCH[8]}
     # git blame
     blame_content=$(git blame -f -L$file_line,+1 $file_name)
     # 连接一下blame的结果和msg错误信息
-    rc=$?; if [[ $rc == 0 ]]; then echo "$blame_content $err_msg"; fi
+    rc=$?; if [[ $rc == 0 ]]; then echo "$blame_content severity=$severity $err_msg"; fi
   fi
 done < ../__tmp3.xml
 cd ..
