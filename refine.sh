@@ -35,8 +35,8 @@ while read p; do
     # git blame
     blame_content=$(git blame -f -L$file_line,+1 $file_name)
     # 连接一下blame的结果和msg错误信息
-    echo "$blame_content $err_msg"
-    fi
+    rc=$?; if [[ $rc == 0 ]]; then echo "$blame_content $err_msg"; fi
+  fi
 done < ../__tmp3.xml
 cd ..
 rm __tmp1.xml __tmp2.xml __tmp3.xml
