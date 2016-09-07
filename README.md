@@ -21,3 +21,7 @@
 ```
 用法 remove_less_then_100x100_pic.sh [folder] 例如 remove_less_then_100x100_pic.sh ./negative_label
 ```
+## keyword_filter.sh 在指定文件夹内搜索符合关键字的文件，并移动到filter_out目录
+```
+用法 keyword_filter.sh [keyword_file.txt] [souce_folder]
+```
